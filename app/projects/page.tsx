@@ -30,27 +30,34 @@ export default function ProjectsPage() {
     []
   );
 
-  // Filtered projects
   const filteredProjects = useMemo(() => {
-    return projects.filter((p) => {
-      const matchesSearch =
-        p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.description.toLowerCase().includes(search.toLowerCase()) ||
-        p.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+    let temp = projects;
 
-      const matchesCategory = category === "All" || p.category === category;
+    if (category !== "All") {
+      temp = temp.filter(
+        (p) => p.category.toLowerCase() === category.toLowerCase()
+      );
+    }
 
-      return matchesSearch && matchesCategory;
-    });
+    if (search) {
+      temp = temp.filter(
+        (p) =>
+          p.title.toLowerCase().includes(search.toLowerCase()) ||
+          p.description.toLowerCase().includes(search.toLowerCase()) ||
+          p.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()))
+      );
+    }
+
+    return temp;
   }, [search, category]);
-
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       <ParticlesBackground />
       <div className="relative z-10">
         <Navbar />
 
-        <section className="pt-32 pb-12 px-6 text-center">
+        {/* Header Section */}
+        <section className="pt-32 pb-12 px-4 sm:px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">
             My{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -62,7 +69,9 @@ export default function ProjectsPage() {
             interests you.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+          {/* Search & Categories */}
+          <div className="flex flex-col items-center gap-4 justify-center mb-10 w-full">
+            {/* Search Input */}
             <input
               type="text"
               placeholder="Search projects..."
@@ -70,7 +79,9 @@ export default function ProjectsPage() {
               onChange={(e) => setSearch(e.target.value)}
               className="w-full sm:w-1/3 px-4 py-2 rounded-lg border border-border bg-background text-primary focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <div className="flex flex-wrap gap-2 justify-center">
+
+            {/* Category Buttons */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-full">
               {categories.map((cat) => (
                 <Button
                   key={cat}
@@ -84,9 +95,18 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <section className="px-6 pb-24">
+        {/* Projects Grid */}
+        <section className="px-4 sm:px-6 pb-24">
           <div className="container mx-auto max-w-7xl">
-            <motion.div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div
+              className="grid gap-6"
+              style={{
+                // Auto-fit responsive grid with min/max card width
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 350px))",
+                justifyContent: "center", // centers cards if row isn't full
+              }}
+              layout
+            >
               <AnimatePresence>
                 {filteredProjects.map((project, index) => (
                   <motion.div
@@ -99,12 +119,10 @@ export default function ProjectsPage() {
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    <Card
-                      className="  group      relative      h-full      rounded-2xl overflow-hidden bg-white/10              backdrop-blur-lg            border-none                 shadow-[0_0_30px_4px_rgba(255,255,255,0.1)]        hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)]       transition-all      duration-300
-    "
-                    >
+                    <Card className="group relative h-full w-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_0_30px_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)] transition-all duration-300">
+                      {/* Project Image */}
                       <motion.div
-                        className="h-52 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10 overflow-hidden"
+                        className="h-52 w-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.4 }}
                       >
@@ -115,6 +133,7 @@ export default function ProjectsPage() {
                         />
                       </motion.div>
 
+                      {/* Card Content */}
                       <CardContent className="p-6">
                         <Link
                           href={`/projects/${project.slug}`}
@@ -127,6 +146,7 @@ export default function ProjectsPage() {
                           {project.description}
                         </p>
 
+                        {/* Tech Tags */}
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.tech.slice(0, 4).map((tech) => (
                             <span
@@ -143,6 +163,7 @@ export default function ProjectsPage() {
                           )}
                         </div>
 
+                        {/* Buttons */}
                         <div className="flex gap-3 justify-between">
                           <Button
                             asChild
@@ -174,6 +195,7 @@ export default function ProjectsPage() {
                         </div>
                       </CardContent>
 
+                      {/* Glow on hover */}
                       {hoveredIndex === index && (
                         <motion.div
                           layoutId="glow"

@@ -51,62 +51,86 @@ const Projects = () => {
                 transition: "transform 0.3s ease",
               }}
             >
-              <Card className="h-full bg-card/50 backdrop-blur-lg border-border hover:border-primary/50 transition-all overflow-hidden flex flex-col">
-                {/* Image / top section */}
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-7xl">
-                  {project.image}
-                </div>
+              <Card className="group relative h-full w-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_0_30px_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)] transition-all duration-300">
+                <motion.div
+                  className="h-52 w-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover"
+                  />
+                </motion.div>
 
-                {/* Content section */}
-                <CardContent className="p-6 flex-1 flex flex-col">
-                  <Link href={`/projects/${project.slug}`}>
-                    <h3 className="text-xl font-bold mb-2 hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
+                <CardContent className="p-6">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="text-2xl font-semibold mb-3 block group-hover:text-primary transition-colors duration-300"
+                  >
+                    {project.title}
                   </Link>
 
-                  {/* Description */}
-                  <p className="text-muted-foreground mb-4 flex-1 overflow-hidden text-ellipsis">
+                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">
                     {project.description}
                   </p>
 
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full"
+                        className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full backdrop-blur-sm"
                       >
                         {tech}
                       </span>
                     ))}
+                    {project.tech.length > 4 && (
+                      <span className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full">
+                        +{project.tech.length - 4}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Buttons fixed at bottom */}
-                  <div className="flex gap-3 mt-auto">
+                  <div className="flex gap-3 justify-between">
                     <Button
-                      onClick={
-                        project.demo
-                          ? () => window.open(project.demo, "_blank")
-                          : undefined
-                      }
-                      size="sm"
+                      asChild
                       variant="outline"
-                      className="flex-1 hover:text-primary "
+                      className="flex-1 text-sm group-hover:border-primary transition-all"
                     >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
+                      <a
+                        href={project.demo || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                      </a>
                     </Button>
                     <Button
-                      size="sm"
+                      asChild
                       variant="outline"
-                      className="flex-1 hover:text-primary"
+                      className="flex-1 text-sm group-hover:border-primary transition-all"
                     >
-                      <SiGithub className="mr-2 h-4 w-4" />
-                      Code
+                      <a
+                        href={project.source || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <SiGithub className="mr-2 h-4 w-4" /> View Code
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
+
+                {hoveredIndex === index && (
+                  <motion.div
+                    layoutId="glow"
+                    className="absolute inset-0 rounded-2xl shadow-[0_0_60px_10px_rgba(0,149,255,0.2)] pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                )}
               </Card>
             </motion.div>
           ))}
