@@ -25,3 +25,17 @@ A modern developer portfolio built with Next.js, TypeScript, and Tailwind CSS.
 ```bash
 npm install
 ```
+
+2. Run the development server:
+
+```bash
+npm run dev
+```
+
+# Open http://localhost:3000 in your browser.
+
+Project Structure
+-/app - Next.js pages
+-/components - React components
+-/lib - Utilities and data
+-/public - Static assets
