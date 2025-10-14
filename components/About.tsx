@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code2, Palette, Rocket } from "lucide-react";
 
-/**
- * About section with two-column layout
- * Highlights skills and passion
- */
+
 const About = () => {
   const highlights = [
     {
@@ -27,7 +24,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 px-6">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

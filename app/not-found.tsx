@@ -38,7 +38,6 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-background to-muted px-6 text-center overflow-hidden relative">
-      {/* Background floating blobs */}
       <motion.div
         className="absolute w-72 h-72 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full top-10 -left-20 blur-3xl"
         animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
@@ -50,7 +49,6 @@ const NotFound = () => {
         transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
       />
 
-      {/* Floating Icons */}
       <FloatingIcon
         icon={LucideAlertCircle}
         size={48}
@@ -72,7 +70,6 @@ const NotFound = () => {
         className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full bg-accent/20 blur-3xl"
       />
 
-      {/* 404 Text */}
       <motion.h1
         className="text-9xl md:text-[12rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent z-10"
         initial={{ scale: 0 }}

@@ -2,13 +2,14 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getServiceBySlug } from "@/data/Services";
 import ServiceDetailClient from "./ServiceDetailClient";
+import PreloaderWrapper from "@/components/PreloaderWrapper";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params; 
+  const { slug } = await params;
   const service = getServiceBySlug(slug);
 
   if (!service) return { title: "Service Not Found | Hilal Dev" };
@@ -20,10 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-  const { slug } = await params; 
+  const { slug } = await params;
   const service = getServiceBySlug(slug);
 
   if (!service) return notFound();
 
-  return <ServiceDetailClient service={service} />;
+  return (
+    <PreloaderWrapper>
+      <ServiceDetailClient service={service} />;
+    </PreloaderWrapper>
+  );
 }

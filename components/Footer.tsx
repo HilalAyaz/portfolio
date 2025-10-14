@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer className="py-8 px-6 border-t border-border">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-6xl px-8">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

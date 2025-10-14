@@ -31,9 +31,8 @@ const ServicesPage = () => {
       <div className="relative z-10">
         <Navbar />
 
-        {/* Hero Section */}
         <section className="pt-32 pb-20 px-6">
-          <div className="container mx-auto text-center max-w-4xl">
+          <div className="container mx-auto text-center max-w-6xl">
             <motion.h1
               variants={fadeInUp}
               initial="hidden"
@@ -75,7 +74,6 @@ const ServicesPage = () => {
           </div>
         </section>
 
-        {/* Services Grid */}
         <section className="pb-28 px-6">
           <div className="container mx-auto max-w-6xl grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => (
@@ -124,9 +122,8 @@ const ServicesPage = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 border-t border-border/20 backdrop-blur-lg">
-          <div className="container mx-auto text-center max-w-3xl">
+        <section className="py-20 px-6 border-t border-border/20 backdrop-blur-lg">
+          <div className="container mx-auto text-center max-w-6xl px-8">
             <motion.h2
               variants={fadeInUp}
               initial="hidden"

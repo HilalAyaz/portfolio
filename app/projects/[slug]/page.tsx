@@ -8,7 +8,6 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Correct async function
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);

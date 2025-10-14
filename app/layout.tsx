@@ -5,9 +5,11 @@ import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
 import PathScroll from "@/components/PathScroll";
+
 const yrsa = Yrsa({
   variable: "--font-yrsa",
   subsets: ["latin"],
+  display: "swap", // Add this for better font loading performance
 });
 
 export const metadata: Metadata = {
@@ -54,7 +56,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" as=" font" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+          as=""
+        />
+      </head>
       <body className={`${yrsa.variable} antialiased`}>
         <ThemeProvider
           attribute="class"

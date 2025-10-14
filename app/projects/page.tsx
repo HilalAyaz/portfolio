@@ -11,8 +11,8 @@ import ParticlesBackground from "@/components/ParticleBackground";
 import { projects } from "@/data/Projects";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
+import OptimizedImage from "@/components/OptimizedImage";
 
-// Animation variants
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
@@ -24,7 +24,6 @@ export default function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
-  // Unique categories
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
     []
@@ -56,8 +55,7 @@ export default function ProjectsPage() {
       <div className="relative z-10">
         <Navbar />
 
-        {/* Header Section */}
-        <section className="pt-32 pb-12 px-4 sm:px-6 text-center">
+        <section className="pt-32 pb-12 px-4 sm:px-6 text-center container max-w-6xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">
             My{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -69,9 +67,7 @@ export default function ProjectsPage() {
             interests you.
           </p>
 
-          {/* Search & Categories */}
           <div className="flex flex-col items-center gap-4 justify-center mb-10 w-full">
-            {/* Search Input */}
             <input
               type="text"
               placeholder="Search projects..."
@@ -80,7 +76,6 @@ export default function ProjectsPage() {
               className="w-full sm:w-1/3 px-4 py-2 rounded-lg border border-border bg-background text-primary focus:outline-none focus:ring-2 focus:ring-primary"
             />
 
-            {/* Category Buttons */}
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-full">
               {categories.map((cat) => (
                 <Button
@@ -95,15 +90,13 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Projects Grid */}
         <section className="px-4 sm:px-6 pb-24">
-          <div className="container mx-auto max-w-7xl">
+          <div className="container mx-auto max-w-6xl">
             <motion.div
               className="grid gap-6"
               style={{
-                // Auto-fit responsive grid with min/max card width
                 gridTemplateColumns: "repeat(auto-fit, minmax(280px, 350px))",
-                justifyContent: "center", // centers cards if row isn't full
+                justifyContent: "center", 
               }}
               layout
             >
@@ -120,20 +113,18 @@ export default function ProjectsPage() {
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
                     <Card className="group relative h-full w-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_0_30px_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)] transition-all duration-300">
-                      {/* Project Image */}
                       <motion.div
                         className="h-52 w-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.4 }}
                       >
-                        <img
+                        <OptimizedImage
                           src={project.image}
                           alt={project.title}
                           className="h-full w-full object-cover"
                         />
                       </motion.div>
 
-                      {/* Card Content */}
                       <CardContent className="p-6">
                         <Link
                           href={`/projects/${project.slug}`}
@@ -146,7 +137,6 @@ export default function ProjectsPage() {
                           {project.description}
                         </p>
 
-                        {/* Tech Tags */}
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.tech.slice(0, 4).map((tech) => (
                             <span
@@ -163,7 +153,6 @@ export default function ProjectsPage() {
                           )}
                         </div>
 
-                        {/* Buttons */}
                         <div className="flex gap-3 justify-between">
                           <Button
                             asChild
@@ -171,7 +160,7 @@ export default function ProjectsPage() {
                             className="flex-1 text-sm group-hover:border-primary transition-all"
                           >
                             <a
-                              href={project.demo || "#"}
+                              href={project.demo || "/not-found"}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -185,7 +174,7 @@ export default function ProjectsPage() {
                             className="flex-1 text-sm group-hover:border-primary transition-all"
                           >
                             <a
-                              href={project.source || "#"}
+                              href={project.source || "/not-found"}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -195,7 +184,6 @@ export default function ProjectsPage() {
                         </div>
                       </CardContent>
 
-                      {/* Glow on hover */}
                       {hoveredIndex === index && (
                         <motion.div
                           layoutId="glow"

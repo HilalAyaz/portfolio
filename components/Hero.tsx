@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Download, Mail } from "lucide-react";
-import { LiquidButton } from "./ui/shadcn-io/liquid-button";
 import { Button } from "./ui/button";
 
 const Hero = () => {
@@ -21,7 +20,7 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center pt-20 px-6"
     >
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,9 +30,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-4 text-muted-foreground"
+            className="flex flex-col sm:flex-row  text-5xl md:text-7xl font-bold mb-4 text-muted-foreground justify-center items-center gap-2"
           >
-            Hi, I'm{" "}
+            Hi, I'm
             <motion.span
               style={{
                 backgroundImage: `linear-gradient(60deg, var(--primary), var(--accent), var(--secondary), var(--accent))`,
@@ -53,9 +52,11 @@ const Hero = () => {
               }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             >
+             
               Hilal Ayaz
             </motion.span>
           </motion.h1>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

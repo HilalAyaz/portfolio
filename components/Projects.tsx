@@ -7,6 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/data/Projects";
 import { SiGithub } from "react-icons/si";
+import OptimizedImage from "./OptimizedImage";
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -14,7 +15,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 px-6 bg-muted/30">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +34,7 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -43,6 +44,7 @@ const Projects = () => {
               viewport={{ once: true }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
+              className="w-full"
               style={{
                 transform:
                   hoveredIndex === index
@@ -51,72 +53,76 @@ const Projects = () => {
                 transition: "transform 0.3s ease",
               }}
             >
-              <Card className="group relative h-full w-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_0_30px_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)] transition-all duration-300">
-                <motion.div
-                  className="h-52 w-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <img
+              <Card className="group relative h-full flex flex-col rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_0_30px_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_10px_rgba(0,149,255,0.25)] transition-all duration-300">
+                <div className="relative w-full aspect-video overflow-hidden">
+                  {" "}
+                  <OptimizedImage
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover"
+                    className="w-full h-full object-fill"
                   />
-                </motion.div>
+                </div>
 
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6 flex-1 flex flex-col">
+                  {" "}
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="text-2xl font-semibold mb-3 block group-hover:text-primary transition-colors duration-300"
+                    className="text-xl sm:text-2xl font-semibold mb-3 block group-hover:text-primary transition-colors duration-300 line-clamp-2"
                   >
                     {project.title}
                   </Link>
-
-                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">
+                  <p className="text-muted-foreground text-sm mb-4 sm:mb-5 leading-relaxed line-clamp-3 flex-1">
+                    {" "}
                     {project.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+                    {" "}
                     {project.tech.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full backdrop-blur-sm"
+                        className="px-2 sm:px-3 py-1 text-xs bg-primary/10 text-primary rounded-full backdrop-blur-sm whitespace-nowrap"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.tech.length > 4 && (
-                      <span className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full">
+                      <span className="px-2 sm:px-3 py-1 text-xs bg-primary/10 text-primary rounded-full whitespace-nowrap">
                         +{project.tech.length - 4}
                       </span>
                     )}
                   </div>
-
-                  <div className="flex gap-3 justify-between">
+                  <div className="flex gap-2 sm:gap-3 mt-auto">
+                    {" "}
                     <Button
                       asChild
                       variant="outline"
-                      className="flex-1 text-sm group-hover:border-primary transition-all"
+                      size="sm" 
+                      className="flex-1 text-xs sm:text-sm group-hover:border-primary transition-all min-w-0" 
                     >
                       <a
                         href={project.demo || "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                        <ExternalLink className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />{" "}
+                        <span className="hidden xs:inline">Live Demo</span>{" "}
+                        <span className="xs:hidden">Demo</span>
                       </a>
                     </Button>
                     <Button
                       asChild
                       variant="outline"
-                      className="flex-1 text-sm group-hover:border-primary transition-all"
+                      size="sm" 
+                      className="flex-1 text-xs sm:text-sm group-hover:border-primary transition-all min-w-0" 
                     >
                       <a
                         href={project.source || "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <SiGithub className="mr-2 h-4 w-4" /> View Code
+                        <SiGithub className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />{" "}
+                        <span className="hidden xs:inline">View Code</span>{" "}
+                        <span className="xs:hidden">Code</span>
                       </a>
                     </Button>
                   </div>

@@ -31,7 +31,6 @@ export default function PreloaderWrapper({
         )}
       </AnimatePresence>
 
-      {/* Content fades in after preloader */}
       <motion.div
         key="content"
         initial={{ opacity: 0 }}

@@ -19,14 +19,12 @@ export default function ProjectDetailClient({
 }: ProjectDetailClientProps) {
   return (
     <>
-      <div className="relative min-h-screen bg-background text-foreground">
+      <div className="relative min-h-screen text-foreground">
         <ParticlesBackground />
         <div className="relative z-10">
           <Navbar />
 
-          {/* Main Container */}
-          <div className="container mx-auto max-w-7xl py-24 px-6">
-            {/* Back Button */}
+          <div className="container mx-auto max-w-6xl py-24 px-6">
             <div className="mb-8">
               <Link href="/projects">
                 <Button
@@ -40,9 +38,7 @@ export default function ProjectDetailClient({
               </Link>
             </div>
 
-            {/* Grid Layout: Left Text + Right Image */}
             <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
-              {/* Left: Title, short description, tech, CTA */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -57,7 +53,6 @@ export default function ProjectDetailClient({
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
                     <span
@@ -69,7 +64,6 @@ export default function ProjectDetailClient({
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 mt-4">
                   <Button
                     asChild
@@ -100,7 +94,6 @@ export default function ProjectDetailClient({
                 </div>
               </motion.div>
 
-              {/* Right: Project Image */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -115,7 +108,6 @@ export default function ProjectDetailClient({
               </motion.div>
             </div>
 
-            {/* Huge Long Description */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
