@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
 import PathScroll from "@/components/PathScroll";
+import { Analytics } from "@vercel/analytics/next";
 
 const yrsa = Yrsa({
   variable: "--font-yrsa",
@@ -64,6 +65,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           as=""
         />
+        <link rel="preload" href="/hilal.jpg" as="image" />
       </head>
       <body className={`${yrsa.variable} antialiased`}>
         <ThemeProvider
@@ -76,6 +78,7 @@ export default function RootLayout({
             <Toaster />
             <PathScroll />
             {children}
+            <Analytics />
           </PreloaderWrapper>
         </ThemeProvider>
       </body>
