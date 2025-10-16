@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/next";
 const yrsa = Yrsa({
   variable: "--font-yrsa",
   subsets: ["latin"],
-  display: "swap", // Add this for better font loading performance
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -47,6 +47,14 @@ export const metadata: Metadata = {
     description:
       "Hilal Ayaz's personal portfolio website showcasing projects, skills, and services as a Full Stack Developer.",
     siteName: "Hilal Ayaz Portfolio",
+    images: [
+      {
+        url: "/portfolio-image-share.png", 
+        width: 1200,
+        height: 630,
+        alt: "Hilal Ayaz Portfolio Preview",
+      },
+    ],
   },
 };
 
