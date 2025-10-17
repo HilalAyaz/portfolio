@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
 import PathScroll from "@/components/PathScroll";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const yrsa = Yrsa({
   variable: "--font-yrsa",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Hilal Ayaz Portfolio",
     images: [
       {
-        url: "/portfolio-image-share.png", 
+        url: "/portfolio-image-share.png",
         width: 1200,
         height: 630,
         alt: "Hilal Ayaz Portfolio Preview",
@@ -87,6 +88,7 @@ export default function RootLayout({
             <PathScroll />
             {children}
             <Analytics />
+            <SpeedInsights />
           </PreloaderWrapper>
         </ThemeProvider>
       </body>
