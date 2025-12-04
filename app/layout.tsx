@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     "Tech Blog",
   ],
   authors: [
-    { name: "Hilal Ayaz", url: "https://hilalayaz-webdev.netlify.app" },
+    { name: "Hilal Ayaz", url: "https://hilalayaz.vercel.app" },
   ],
   creator: "Hilal Ayaz",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://hilalayaz-webdev.netlify.app",
+    url: "https://hilalayaz.vercel.app",
     title: "Hilal Ayaz - Full Stack Developer",
     description:
       "Hilal Ayaz's personal portfolio website showcasing projects, skills, and services as a Full Stack Developer.",
