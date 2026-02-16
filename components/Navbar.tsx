@@ -36,7 +36,7 @@ const Navbar = () => {
         {" "}
         <div className="flex items-center justify-between w-full">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex-shrink-0 min-w-0"
           >
@@ -45,7 +45,11 @@ const Navbar = () => {
             </Link>{" "}
           </motion.div>
 
-          <div className="hidden md:flex items-center space-x-3 lg:space-x-4 flex-shrink-0">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="hidden md:flex items-center space-x-3 lg:space-x-4 flex-shrink-0"
+          >
             {" "}
             {navItems.map((item) => (
               <Link
@@ -58,7 +62,7 @@ const Navbar = () => {
               </Link>
             ))}
             <ThemeToggle />
-          </div>
+          </motion.div>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground hover:text-primary transition-colors flex-shrink-0 p-1"

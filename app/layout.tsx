@@ -82,13 +82,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PreloaderWrapper>
             <Toaster />
             <PathScroll />
             {children}
             <Analytics />
             <SpeedInsights />
-          </PreloaderWrapper>
         </ThemeProvider>
       </body>
     </html>
