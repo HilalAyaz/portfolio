@@ -74,7 +74,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
           as=""
         />
-        <link rel="preload" href="/hilal.jpg" as="image" />
       </head>
       <body className={`${yrsa.variable} antialiased`}>
         <ThemeProvider
