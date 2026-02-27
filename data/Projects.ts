@@ -13,6 +13,28 @@ export interface Project {
 }
 export const projects: Project[] = [
   {
+    slug: "paktour-travel-website",
+    title: "PakTour | Headless Travel Platform",
+    description:
+      "A high-performance travel platform built from scratch with Next.js 15+ and Sanity.io. Features on-demand ISR, custom GROQ data fetching, and a fully decoupled headless architecture for instant content updates.",
+    longDescription:
+      "A custom-built travel engine designed for the rugged tourism landscape of Pakistan. This project focuses on performance and content scalability, utilizing Sanity.io as a Content Lake and Next.js for a blazing-fast, statically-cached frontend that updates in real-time via secure webhooks.",
+    tech: [
+      "Next.js 16",
+      "Sanity.io",
+      "TypeScript",
+      "TailwindCSS",
+      "GROQ",
+      "Vercel",
+    ],
+    image: "/projects/paktour-preview.jpg",
+    demo: "https://pak-tour-template.vercel.app/",
+    source: "https://github.com/HilalAyaz/paktour",
+    featured: true,
+    date: "2026-02-27",
+    category: "Full Stack / Headless CMS",
+  },
+  {
     slug: "full-stack-event-manager-app",
     title: "Full Stack Event Manager App",
     description:
@@ -45,7 +67,7 @@ export const projects: Project[] = [
     image: "/projects/prompt-app.png",
     demo: "https://next-ai-prompt-sepia.vercel.app/",
     source: "",
-    featured: true,
+    featured: false,
     date: "2024-01-01",
     category: "Full Stack",
   },
@@ -105,7 +127,7 @@ export const projects: Project[] = [
     image: "/projects/ai-article-summarizer.png",
     demo: "https://web-url-summary.netlify.app/",
     source: "",
-    featured: true,
+    featured: false,
     date: "2024-01-01",
     category: "AI",
   },
@@ -132,10 +154,10 @@ export const projects: Project[] = [
     longDescription:
       "Tea House UI/UX project with intuitive interface, booking system, and responsive design.",
     tech: ["React", "TailwindCSS"],
-    image: "/projects/tea-house.png",
+    image: "/projects/teahouse-preview.png",
     demo: "https://chaipeelo-devdesigner.netlify.app/",
     source: "",
-    featured: false,
+    featured: true,
     date: "2024-01-01",
     category: "UI/UX",
   },
@@ -404,7 +426,7 @@ export const getProjectBySlug = (slug: string) => {
 };
 export const getProjectsByCategory = (category: string, limit?: number) => {
   const filtered = projects.filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase()
+    (p) => p.category.toLowerCase() === category.toLowerCase(),
   );
   return limit ? filtered.slice(0, limit) : filtered;
 };

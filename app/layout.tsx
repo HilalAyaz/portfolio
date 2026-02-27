@@ -15,47 +15,68 @@ const yrsa = Yrsa({
 });
 
 export const metadata: Metadata = {
-  title: "Hilal Ayaz - Full Stack Developer",
+  // Clear, keyword-heavy title
+  title: {
+    default: "Hilal Ayaz | Full Stack Developer & Next.js Expert",
+    template: "%s | Hilal Ayaz",
+  },
   description:
-    "Hilal Ayaz's personal portfolio website showcasing projects, skills, and services as a Full Stack Developer.",
+    "Full Stack Developer specializing in Next.js 16, and high-performance web applications. Explore Hilal Ayaz's portfolio for custom software engineering and modern web solutions.",
   keywords: [
     "Hilal Ayaz",
-    "Full Stack Developer",
-    "MERN Stack",
-    "Portfolio",
-    "Web Development",
-    "JavaScript",
-    "React",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "Frontend",
-    "Backend",
-    "Software Engineer",
-    "Web Applications",
-    "Programming",
-    "Tech Blog",
+    "Full Stack Developer Pakistan",
+    "Next.js 15 Expert",
+    "Sanity.io Developer",
+    "Headless CMS Specialist",
+    "React Engineer",
+    "TypeScript Developer",
+    "MERN Stack Portfolio",
+    "Tailwind CSS Expert",
+    "Software Engineer Mardan",
+    "On-Demand ISR",
+    "Modern Web Architecture",
+    "Custom Web Applications",
   ],
-  authors: [
-    { name: "Hilal Ayaz", url: "https://hilalayaz.vercel.app" },
-  ],
+  authors: [{ name: "Hilal Ayaz", url: "https://hilalayaz.vercel.app" }],
   creator: "Hilal Ayaz",
+
+  // OpenGraph for LinkedIn/Socials
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://hilalayaz.vercel.app",
-    title: "Hilal Ayaz - Full Stack Developer",
+    title: "Hilal Ayaz | Modern Full Stack Developer",
     description:
-      "Hilal Ayaz's personal portfolio website showcasing projects, skills, and services as a Full Stack Developer.",
+      "Crafting blazing-fast web experiences with Next.js and React.js. View my latest projects and technical expertise.",
     siteName: "Hilal Ayaz Portfolio",
     images: [
       {
         url: "/portfolio-image-share.png",
         width: 1200,
         height: 630,
-        alt: "Hilal Ayaz Portfolio Preview",
+        alt: "Hilal Ayaz Portfolio - Full Stack Web Development",
       },
     ],
+  },
+
+  // Twitter/X specific metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Hilal Ayaz | Full Stack Developer",
+    description: "Web Development Expert. Building the future of the web.",
+    images: ["/portfolio-image-share.png"],
+  },
+
+  // Verification for Search Consoles
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -67,26 +88,27 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" as=" font" />
+        {/* Simplified preconnects - Next/Font handles most of this automatically */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
-          as=""
         />
       </head>
-      <body className={`${yrsa.variable} antialiased`}>
+      <body className={`${yrsa.variable} antialiased font-serif`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-            <Toaster />
-            <PathScroll />
-            {children}
-            <Analytics />
-            <SpeedInsights />
+          <Toaster />
+          <PathScroll />
+          {/* Consider if you want the PreloaderWrapper here too */}
+          {children}
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
